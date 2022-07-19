@@ -10,6 +10,7 @@ import java.io.IOException;
 public class HueFilters implements ImageFilters {
     final Class<Main> mainClass = Main.class;
     final ClassLoader classLoader = mainClass.getClassLoader();
+
     @Override
     public BufferedImage filer(BufferedImage bufferedImage) {
         final int height = bufferedImage.getHeight();
@@ -31,13 +32,13 @@ public class HueFilters implements ImageFilters {
         return bufferedImage;
 
     } public File saveFile(BufferedImage bufferedImage) throws IOException {
-        final String bothFiltersPath = classLoader.getResource("").getPath();
-        final File bothFiltersFile = new File(bothFiltersPath + "/crop.jpg");
+        final String hueFilterPath = classLoader.getResource("").getPath();
+        final File hueFilterFile = new File(hueFilterPath + "/crop.jpg");
         HueFilters hueImage=new HueFilters();
         hueImage.filer(bufferedImage);
-        FileWrite hueFilterWrite=new FileWrite(bothFiltersFile);
+        FileWrite hueFilterWrite=new FileWrite(hueFilterFile);
         hueFilterWrite.write(hueImage.filer(bufferedImage));
-        return bothFiltersFile;
+        return hueFilterFile;
 
     }
 
